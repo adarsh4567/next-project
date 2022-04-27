@@ -50,44 +50,21 @@ function Form ({user})  {
     setViewPort({
       latitude:latitude,
       longitude:longitude,
-      zoom:1,
+      zoom:3,
     })
 
   }
 
-  const submitData = async (e)=>{
-    e.preventDefault();
-    console.log(form);
-    await fetch('https://jsonplaceholder.typicode.com/posts',{
-      method:'POST',
-      body:JSON.stringify({
-        title:form.title,
-        body:form.body,
-        userId:form.userId,
-      }),
-      headers:{
-        'Content-type':'application/json'
-      }
-    }
-    )
-    .then(response => response.json())
-    .then(data => {console.log(data)
-      alert(JSON.stringify(data))})
-    
- 
-  }
- 
-
+  
   return (
     <>
    
 
     <div className={styles.loginbox}>
   <h2>Find & Register User</h2>
-  <form method='POST' onSubmit={submitData}>
+  <form method='POST' action='https://jsonplaceholder.typicode.com/posts'>
     <div className={styles.userbox}>
       <select defaultValue='Leanne Graham' onChange={handleChange}>
-        <option></option>
         {user.map((info)=>(
           <option key={info.id} value={info.name}>{info.name}</option>
         ))}
